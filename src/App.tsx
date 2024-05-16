@@ -4,13 +4,13 @@ import { LoadingPage } from '@components/LoadingPage'
 import { PokeCard } from '@components/PokeCard'
 import { Button } from '@components/ui/button'
 import { RotateCw } from 'lucide-react'
-import type { PokeAPI } from 'pokeapi-types'
 import { useEffect, useState } from 'react'
 import './css/App.css'
+import type { Pokemon } from './custom-types/Pokemon'
 import { getPokemons } from './lib/pokedex'
 
 export function App() {
-  const [pokemons, setPokemons] = useState<PokeAPI.Pokemon[]>([])
+  const [pokemons, setPokemons] = useState<Pokemon[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 

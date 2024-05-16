@@ -1,20 +1,5 @@
+import type { Pokemon } from '@/custom-types/Pokemon'
 import axios from 'axios'
-import type { PokeAPI } from 'pokeapi-types'
-
-interface PokemonWithAnimatedSprites extends PokeAPI.Pokemon {
-  sprites: PokeAPI.PokemonSprites & {
-    versions?: {
-      'generation-v'?: {
-        'black-white'?: {
-          front_default?: string
-          animated?: {
-            front_default: string
-          }
-        }
-      }
-    }
-  }
-}
 
 const typeBgColors: Record<string, string> = {
   normal: 'bg-[#A8A77A]',
@@ -37,15 +22,15 @@ const typeBgColors: Record<string, string> = {
   fairy: 'bg-[#D685AD]',
 }
 
-function createPokemonPromises(amount: number, start: number = 1): Promise<PokeAPI.Pokemon>[] {
+function createPokemonPromises(amount: number, start: number = 1): Promise<Pokemon>[] {
   return Array.from({ length: amount }, async (_, i) => {
     const id = i + start
-    const response = await axios.get<PokeAPI.Pokemon>(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const response = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${id}`)
     return response.data
   })
 }
 
-export async function getPokemons(amount: number, start: number = 1): Promise<PokeAPI.Pokemon[]> {
+export async function getPokemons(amount: number, start: number = 1): Promise<Pokemon[]> {
   try {
     const pokemonPromises = createPokemonPromises(amount, start)
     const pokemons = await Promise.all(pokemonPromises)
@@ -56,7 +41,7 @@ export async function getPokemons(amount: number, start: number = 1): Promise<Po
   }
 }
 
-export function getPokeAnimatedSprite(poke: PokemonWithAnimatedSprites) {
+export function getPokeAnimatedSprite(poke: Pokemon) {
   const animated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_default
 
   return animated || poke.sprites.front_default

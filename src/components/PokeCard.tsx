@@ -1,3 +1,4 @@
+import type { Pokemon } from '@/custom-types/Pokemon'
 import { getPokeAnimatedSprite, getTypeBgColor } from '@/lib/pokedex'
 import { Badge } from '@components/ui/badge'
 import {
@@ -8,9 +9,8 @@ import {
   CardHeader,
   CardTitle
 } from '@components/ui/card'
-import type { PokeAPI } from 'pokeapi-types'
 
-export function PokeCard({ pokemon }: { pokemon: PokeAPI.Pokemon }) {
+export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   return (
     <Card className='hover:scale-110 transition-all duration-500 cursor-pointer'>
       <CardTitle className='text-center first-letter:capitalize pt-2'>
