@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className='flex justify-center p-4'>
       <p className='text-sm text-gray-500'>
-        Feito com por {' '}
+        Feito por {' '}
         <a
           href='https://github.com/sandenbergmelo' target='_blank'
           rel='noreferrer'
