@@ -5,7 +5,7 @@ import { PokeCard } from '@components/PokeCard'
 import { Button } from '@components/ui/button'
 import { RotateCw } from 'lucide-react'
 import type { PokeAPI } from 'pokeapi-types'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './css/App.css'
 import { getPokemons } from './lib/pokedex'
 
@@ -36,11 +36,9 @@ export function App() {
     setSearchTerm(event.target.value)
   }
 
-  const filteredPokemons = useMemo(() => {
-    return pokemons.filter(pokemon =>
-      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  }, [pokemons, searchTerm])
+  const filteredPokemons = pokemons.filter(pokemon =>
+    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   if (isLoading && pokemons.length === 0) {
     return <LoadingPage />
