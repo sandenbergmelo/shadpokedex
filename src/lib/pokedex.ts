@@ -50,3 +50,7 @@ export function getPokeAnimatedSprite(poke: Pokemon) {
 export function getTypeBgColor(typeName: string) {
   return typeBgColors[typeName] || 'bg-gray-500'
 }
+
+export function getPokemonSound(poke: Pokemon) {
+  return poke.cries.latest || poke.cries.legacy
+}

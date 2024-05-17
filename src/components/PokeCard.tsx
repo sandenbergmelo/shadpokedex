@@ -1,5 +1,9 @@
 import type { Pokemon } from '@/custom-types/Pokemon'
-import { getPokeAnimatedSprite, getTypeBgColor } from '@/lib/pokedex'
+import {
+  getPokeAnimatedSprite,
+  getPokemonSound,
+  getTypeBgColor
+} from '@/lib/pokedex'
 import { Badge } from '@components/ui/badge'
 import {
   Card,
@@ -9,8 +13,19 @@ import {
   CardHeader,
   CardTitle
 } from '@components/ui/card'
+import { useCallback } from 'react'
+
+function playSound(url: string) {
+  const audio = new Audio(url)
+  audio.volume = 0.5
+  audio.play()
+}
 
 export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
+  const playPokeSound = useCallback(() => {
+    playSound(getPokemonSound(pokemon))
+  }, [pokemon])
+
   return (
     <Card className='hover:scale-110 transition-all duration-500 cursor-pointer'>
       <CardTitle className='text-center first-letter:capitalize pt-2'>
@@ -25,6 +40,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
             className='size-32 hover:scale-125 transition-all duration-500 cursor-pointer'
             src={getPokeAnimatedSprite(pokemon)}
             alt={`Pokemon: ${pokemon.name}`}
+            onClick={playPokeSound}
           />
         </CardContent>
         <CardFooter className='flex justify-center gap-2 w-48'>
