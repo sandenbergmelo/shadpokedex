@@ -41,9 +41,13 @@ export async function getPokemons(amount: number, start: number = 1): Promise<Po
   }
 }
 
-export function getPokeAnimatedSprite(poke: Pokemon) {
-  const animated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_default
+export function getPokeAnimatedSprite(poke: Pokemon, isShiny: boolean = false) {
+  if (isShiny) {
+    const shinyAnimated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_shiny
+    return shinyAnimated || poke.sprites.front_shiny
+  }
 
+  const animated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_default
   return animated || poke.sprites.front_default
 }
 
