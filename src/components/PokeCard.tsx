@@ -1,9 +1,9 @@
-import type { Pokemon } from '@/custom-types/Pokemon'
 import {
   getPokeAnimatedSprite,
   getPokemonSound,
   getTypeBgColor
 } from '@/lib/pokedex'
+import type { Pokemon } from '@/types/pokemon'
 import { Badge } from '@components/ui/badge'
 import {
   Card,

@@ -1,3 +1,5 @@
+import { getPokemons } from '@/lib/pokedex'
+import type { Pokemon } from '@/types/pokemon'
 import { Footer } from '@components/Footer'
 import { Header } from '@components/Header'
 import { LoadingPage } from '@components/LoadingPage'
@@ -6,8 +8,6 @@ import { Button } from '@components/ui/button'
 import { RotateCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import './css/App.css'
-import type { Pokemon } from './custom-types/Pokemon'
-import { getPokemons } from './lib/pokedex'
 
 export function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([])

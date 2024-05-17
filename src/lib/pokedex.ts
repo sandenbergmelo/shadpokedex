@@ -1,4 +1,4 @@
-import type { Pokemon } from '@/custom-types/Pokemon'
+import type { Pokemon } from '@/types/pokemon'
 import axios from 'axios'
 
 const typeBgColors: Record<string, string> = {
