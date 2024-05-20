@@ -22,11 +22,16 @@ const typeBgColors: Record<string, string> = {
   fairy: 'bg-[#D685AD]',
 }
 
-function createPokemonPromises(amount: number, start: number = 1): Promise<Pokemon>[] {
+function createPokemonPromises(amount: number, start: number = 1): Promise<Pokemon | null>[] {
   return Array.from({ length: amount }, async (_, i) => {
     const id = i + start
-    const response = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    return response.data
+    try {
+      const response = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      return response.data
+    } catch (error) {
+      console.error(`Failed to fetch Pokemon with ID: ${id}`, error)
+      return null
+    }
   })
 }
 
@@ -34,14 +39,14 @@ export async function getPokemons(amount: number, start: number = 1): Promise<Po
   try {
     const pokemonPromises = createPokemonPromises(amount, start)
     const pokemons = await Promise.all(pokemonPromises)
-    return pokemons
+    return pokemons.filter(pokemon => pokemon !== null) as Pokemon[]
   } catch (error) {
-    console.error(error)
+    console.error('Failed to fetch Pokemons', error)
     return []
   }
 }
 
-export function getPokeAnimatedSprite(poke: Pokemon, isShiny: boolean = false) {
+export function getPokeAnimatedSprite(poke: Pokemon, isShiny: boolean = false): string {
   if (isShiny) {
     const shinyAnimated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_shiny
     return shinyAnimated || poke.sprites.front_shiny
@@ -51,15 +56,10 @@ export function getPokeAnimatedSprite(poke: Pokemon, isShiny: boolean = false) {
   return animated || poke.sprites.front_default
 }
 
-export function getTypeBgColor(typeName: string) {
+export function getTypeBgColor(typeName: string): string {
   return typeBgColors[typeName] || 'bg-gray-500'
 }
 
-export function getPokemonSound(poke: Pokemon) {
-  return poke.cries.latest || poke.cries.legacy
-}
-
-export async function getPokemonByNameOrId(nameOrId: string): Promise<Pokemon> {
-  const response = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${nameOrId}`)
-  return response.data
+export function getPokemonSound(poke: Pokemon): string {
+  return poke.cries?.latest || poke.cries.legacy
 }
