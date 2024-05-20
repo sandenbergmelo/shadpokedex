@@ -58,3 +58,8 @@ export function getTypeBgColor(typeName: string) {
 export function getPokemonSound(poke: Pokemon) {
   return poke.cries.latest || poke.cries.legacy
 }
+
+export async function getPokemonByNameOrId(nameOrId: string): Promise<Pokemon> {
+  const response = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${nameOrId}`)
+  return response.data
+}

@@ -9,12 +9,12 @@ export function Header({ searchTermState, handleSearch }: HeaderProps) {
   return (
     <header className='container mx-auto p-4'>
       <div className='mb-4'>
-        <h1 className='text-6xl text-center font-PokemonSolid'>Pokédex</h1>
+        <h1 className='text-center font-PokemonSolid text-6xl'>Pokédex</h1>
       </div>
       <div className='container mx-auto'>
         <Input
           type='search'
-          className='w-min ml-4 h-16 text-xl'
+          className='ml-4 h-16 w-min text-xl'
           placeholder='Pesquisar Pokémon 🔍'
           value={searchTermState}
           onChange={handleSearch}

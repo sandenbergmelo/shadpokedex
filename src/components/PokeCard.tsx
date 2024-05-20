@@ -47,8 +47,8 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   }, [isShine])
 
   return (
-    <Card className='hover:scale-110 transition-all duration-500 cursor-pointer p-6'>
-      <CardHeader className='pt-0 items-center'>
+    <Card className='cursor-pointer p-6 transition-all duration-500 hover:scale-110'>
+      <CardHeader className='items-center pt-0'>
         <CardTitle className='text-center first-letter:capitalize'>
           {pokemon.name}
         </CardTitle>
@@ -57,7 +57,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
         </CardDescription>
       </CardHeader>
 
-      <div className='flex justify-center -mt-5'>
+      <div className='-mt-5 flex justify-center'>
         <Button variant='ghost' className='w-10 text-primary-foreground'
           onClick={toggleShine}
         >
@@ -69,19 +69,19 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
 
       <CardContent>
         <img
-          className='size-32 hover:scale-125 transition-all duration-500 cursor-pointer'
+          className='size-32 cursor-pointer transition-all duration-500 hover:scale-125'
           src={getPokeAnimatedSprite(pokemon, isShine)}
           alt={`Pokemon: ${pokemon.name}`}
           onClick={playPokeSound}
         />
       </CardContent>
 
-      <CardFooter className='flex justify-center gap-2 w-48'>
+      <CardFooter className='flex w-48 justify-center gap-2'>
         {pokemon.types.map((type) => (
           <Badge
             variant='secondary'
             key={type.type.name}
-            className={`uppercase text-sm ${getTypeBgColor(type.type.name)}`}
+            className={`text-sm uppercase ${getTypeBgColor(type.type.name)}`}
           >
             {type.type.name}
           </Badge>

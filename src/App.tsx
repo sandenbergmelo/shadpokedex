@@ -48,7 +48,7 @@ export function App() {
     <>
       <Header searchTermState={searchTerm} handleSearch={handleSearch} />
 
-      <main className='container flex flex-wrap gap-4 justify-center'>
+      <main className='container flex flex-wrap justify-center gap-4'>
         {filteredPokemons.map((poke) => (
           <PokeCard key={poke.id} pokemon={poke} />
         ))}

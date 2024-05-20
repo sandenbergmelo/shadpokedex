@@ -5,6 +5,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:tailwindcss/recommended'
+
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -17,5 +19,6 @@ module.exports = {
     'semi': ['error', 'never'],
     'quotes': ['error', 'single'],
     'import-newlines/enforce': ['warn', { items: 40, 'max-len': 80 }],
+    'tailwindcss/classnames-order': 'warn',
   },
 }

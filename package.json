@@ -34,6 +34,7 @@
     "eslint-plugin-import-newlines": "^1.4.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "eslint-plugin-tailwindcss": "^3.15.2",
     "pokeapi-types": "^0.0.2",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
