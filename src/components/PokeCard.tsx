@@ -34,7 +34,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   }, [pokemon])
 
   const toggleShine = useCallback(async () => {
-    setIsShine(!isShine)
+    setIsShine(prev => !prev)
 
     await sleep(100)
     shineIcon.current!.classList.toggle('text-yellow-400')
@@ -44,7 +44,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
     await sleep(600)
     shineIcon.current!.classList.remove('animate-bounce')
 
-  }, [isShine])
+  }, [])
 
   return (
     <Card className='cursor-pointer p-6 transition-all duration-500 hover:scale-110'>
