@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "*.css": "tailwindcss",
+    },
+    "cSpell.words": [
+        "clsx",
+        "imgs",
+        "pokeapi",
+        "pokedex",
+        "Pokédex",
+        "pokemon",
+        "pokemons",
+        "Pokemons"
+    ]
+}
