@@ -32,10 +32,6 @@ export function App() {
     fetchPokemons(34)
   }, [])
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value)
-  }
-
   const filteredPokemons = pokemons.filter(pokemon =>
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -48,7 +44,7 @@ export function App() {
     <>
       <Header
         searchTermState={searchTerm}
-        handleSearch={handleSearch}
+        handleSearch={e => setSearchTerm(e.target.value)}
       />
 
       <main className='container flex flex-wrap justify-center gap-4'>

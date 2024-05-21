@@ -29,10 +29,6 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   const [isShine, setIsShine] = useState(false)
   const shineIcon = useRef<HTMLSpanElement>(null)
 
-  const playPokeSound = useCallback(() => {
-    playSound(getPokemonSound(pokemon))
-  }, [pokemon])
-
   const toggleShine = useCallback(async () => {
     setIsShine(prev => !prev)
 
@@ -72,7 +68,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
           className='size-32 cursor-pointer transition-all duration-500 hover:scale-125'
           src={getPokeAnimatedSprite(pokemon, isShine)}
           alt={`Pokemon: ${pokemon.name}`}
-          onClick={playPokeSound}
+          onClick={() => playSound(getPokemonSound(pokemon))}
         />
       </CardContent>
 
