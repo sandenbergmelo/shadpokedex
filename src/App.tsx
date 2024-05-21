@@ -23,8 +23,10 @@ export function App() {
 
   async function addMorePokemons(amount: number = 10) {
     setIsLoading(true)
-    const fetchedPokemons = await getPokemons(amount, pokemons[pokemons.length - 1].id + 1)
-    setPokemons([...pokemons, ...fetchedPokemons])
+    const fetchedPokemons =
+      await getPokemons(amount, pokemons[pokemons.length - 1].id + 1)
+
+    setPokemons(prevPokemons => [...prevPokemons, ...fetchedPokemons])
     setIsLoading(false)
   }
 
