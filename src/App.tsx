@@ -7,7 +7,6 @@ import { PokeCard } from '@components/PokeCard'
 import { Button } from '@components/ui/button'
 import { RotateCw } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import './css/App.css'
 
 export function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([])
