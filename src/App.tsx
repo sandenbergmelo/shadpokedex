@@ -1,43 +1,21 @@
-import { getPokemons } from '@/lib/pokedex'
-import type { Pokemon } from '@/types/pokemon'
+import { useFetchPokemons } from '@/hooks/useFetchPokemons'
 import { Footer } from '@components/Footer'
 import { Header } from '@components/Header'
 import { LoadingPage } from '@components/LoadingPage'
 import { PokeCard } from '@components/PokeCard'
 import { Button } from '@components/ui/button'
 import { RotateCw } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export function App() {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([])
+  const { pokemons, isFetching, addMorePokemons } = useFetchPokemons(34)
   const [searchTerm, setSearchTerm] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
 
-  async function fetchPokemons(amount: number, start: number = 1) {
-    setIsLoading(true)
-    const fetchedPokemons = await getPokemons(amount, start)
-    setPokemons(fetchedPokemons)
-    setIsLoading(false)
-  }
+  const filteredPokemons = pokemons.filter(pokemon => {
+    return pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+  })
 
-  async function addMorePokemons(amount: number = 10) {
-    setIsLoading(true)
-    const fetchedPokemons =
-      await getPokemons(amount, pokemons[pokemons.length - 1].id + 1)
-
-    setPokemons(prevPokemons => [...prevPokemons, ...fetchedPokemons])
-    setIsLoading(false)
-  }
-
-  useEffect(() => {
-    fetchPokemons(34)
-  }, [])
-
-  const filteredPokemons = pokemons.filter(pokemon =>
-    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-
-  if (isLoading && pokemons.length === 0) {
+  if (isFetching && pokemons.length === 0) {
     return <LoadingPage />
   }
 
@@ -53,7 +31,7 @@ export function App() {
           <PokeCard key={poke.id} pokemon={poke} />
         ))}
 
-        {(isLoading) ?
+        {(isFetching) ?
           <Button variant='secondary'>
             Carregando...
             <RotateCw className='animate-spin' />
