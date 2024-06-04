@@ -16,7 +16,7 @@ export function App() {
   })
 
   useEffect(() => {
-    if (!autoFetch) return
+    if (!autoFetch || searchTerm) return
 
     const intersectionObserver = new IntersectionObserver(entries => {
       if (entries.some(entry => entry.isIntersecting)) {
@@ -27,7 +27,7 @@ export function App() {
     intersectionObserver.observe(document.querySelector('footer') as Element)
 
     return () => intersectionObserver.disconnect()
-  }, [addMorePokemons, autoFetch])
+  }, [addMorePokemons, autoFetch, searchTerm])
 
   return (
     <>
@@ -52,7 +52,7 @@ export function App() {
           <SkeletonPokeCard key={index} />
         ))}
 
-        {!autoFetch &&
+        {!autoFetch && !searchTerm &&
           <Button variant='secondary' onClick={() => addMorePokemons(15)}>
             Carregar mais
           </Button>
