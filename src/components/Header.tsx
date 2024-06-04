@@ -1,11 +1,13 @@
 import { Input } from '@components/ui/input'
+import { Switch } from '@components/ui/switch'
 
 interface HeaderProps {
   searchTermState: string
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleSwitch: (checked: boolean) => void
 }
 
-export function Header({ searchTermState, handleSearch }: HeaderProps) {
+export function Header({ searchTermState, handleSearch, handleSwitch }: HeaderProps) {
   return (
     <header className='container mx-auto p-4'>
       <div className='mb-4'>
@@ -20,6 +22,10 @@ export function Header({ searchTermState, handleSearch }: HeaderProps) {
           onChange={handleSearch}
           aria-label='Pesquisar Pokémon'
         />
+      </div>
+      <div className='container ml-4 mt-4 flex gap-2'>
+        <p>Carregar mais automaticamente: </p>
+        <Switch defaultChecked onCheckedChange={handleSwitch} />
       </div>
     </header>
   )

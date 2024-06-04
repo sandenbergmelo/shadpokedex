@@ -4,21 +4,37 @@ import { Header } from '@components/Header'
 import { PokeCard } from '@components/PokeCard'
 import { SkeletonPokeCard } from '@components/SkeletonPokeCard'
 import { Button } from '@components/ui/button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function App() {
   const { pokemons, isFetching, addMorePokemons } = useFetchPokemons(34)
   const [searchTerm, setSearchTerm] = useState('')
+  const [autoFetch, setAutoFetch] = useState(true)
 
   const filteredPokemons = pokemons.filter(pokemon => {
     return pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   })
 
+  useEffect(() => {
+    if (!autoFetch) return
+
+    const intersectionObserver = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        addMorePokemons(25)
+      }
+    })
+
+    intersectionObserver.observe(document.querySelector('footer') as Element)
+
+    return () => intersectionObserver.disconnect()
+  }, [addMorePokemons, autoFetch])
+
   return (
     <>
       <Header
         searchTermState={searchTerm}
-        handleSearch={e => setSearchTerm(e.target.value)}
+        handleSearch={(e) => setSearchTerm(e.target.value)}
+        handleSwitch={(checked) => setAutoFetch(checked)}
       />
 
       <main className='container flex flex-wrap justify-center gap-4'>
@@ -32,12 +48,11 @@ export function App() {
           ))
         }
 
-        {(isFetching) ?
-          Array.from({ length: 15 }).map((_, index) => (
-            <SkeletonPokeCard key={index} />
-          ))
-          :
-          (searchTerm === '') &&
+        {isFetching && Array.from({ length: 15 }).map((_, index) => (
+          <SkeletonPokeCard key={index} />
+        ))}
+
+        {!autoFetch &&
           <Button variant='secondary' onClick={() => addMorePokemons(15)}>
             Carregar mais
           </Button>
