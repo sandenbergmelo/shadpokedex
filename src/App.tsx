@@ -12,11 +12,12 @@ export function App() {
   const [autoFetch, setAutoFetch] = useState(true)
 
   const filteredPokemons = pokemons.filter(pokemon => {
-    return pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    return pokemon.name.toLowerCase()
+      .includes(searchTerm.trim().toLowerCase())
   })
 
   useEffect(() => {
-    if (!autoFetch || searchTerm) return
+    if (!autoFetch || searchTerm.trim()) return
 
     const intersectionObserver = new IntersectionObserver(entries => {
       if (entries.some(entry => entry.isIntersecting)) {
