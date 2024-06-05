@@ -1,8 +1,9 @@
 import { useFetchPokemons } from '@/hooks/useFetchPokemons'
-import { useEffect } from 'react'
 import { PokeCard } from '@components/PokeCard'
 import { SkeletonPokeCard } from '@components/SkeletonPokeCard'
 import { Button } from '@components/ui/button'
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 interface PokeListProps {
   autoFetch: boolean
@@ -11,20 +12,19 @@ interface PokeListProps {
 
 export function PokeList({ autoFetch, searchTerm }: PokeListProps) {
   const { pokemons, isFetching, addMorePokemons } = useFetchPokemons(34)
+  const { ref, inView } = useInView({ threshold: 0.6})
 
   useEffect(() => {
     if (!autoFetch || searchTerm.trim()) return
 
-    const intersectionObserver = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        addMorePokemons(25)
-      }
-    })
+    ref(document.querySelector('footer') as Element)
 
-    intersectionObserver.observe(document.querySelector('footer') as Element)
+    if (inView) {
+      addMorePokemons(25)
+    }
 
-    return () => intersectionObserver.disconnect()
-  }, [addMorePokemons, autoFetch, searchTerm])
+    return () => ref(null)
+  }, [ref, autoFetch, searchTerm, inView, addMorePokemons])
 
   const filteredPokemons = pokemons.filter(pokemon => {
     return pokemon.name.toLowerCase()
