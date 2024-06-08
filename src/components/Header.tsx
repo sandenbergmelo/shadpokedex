@@ -7,23 +7,27 @@ interface HeaderProps {
   handleSwitch: (checked: boolean) => void
 }
 
-export function Header({ searchTermState, handleSearch, handleSwitch }: HeaderProps) {
+export function Header({
+  searchTermState,
+  handleSearch,
+  handleSwitch,
+}: HeaderProps) {
   return (
-    <header className='container mx-auto p-4'>
-      <div className='mb-4'>
-        <h1 className='text-center font-PokemonSolid text-6xl'>Pokédex</h1>
+    <header className="container mx-auto p-4">
+      <div className="mb-4">
+        <h1 className="text-center font-PokemonSolid text-6xl">Pokédex</h1>
       </div>
-      <div className='container'>
+      <div className="container">
         <Input
-          type='search'
-          className='ml-4 h-16 w-min text-xl'
-          placeholder='Pesquisar Pokémon 🔍'
+          type="search"
+          className="ml-4 h-16 w-min text-xl"
+          placeholder="Pesquisar Pokémon 🔍"
           value={searchTermState}
           onChange={handleSearch}
-          aria-label='Pesquisar Pokémon'
+          aria-label="Pesquisar Pokémon"
         />
       </div>
-      <div className='container ml-4 mt-4 flex gap-2'>
+      <div className="container ml-4 mt-4 flex gap-2">
         <p>Carregar mais automaticamente: </p>
         <Switch defaultChecked onCheckedChange={handleSwitch} />
       </div>

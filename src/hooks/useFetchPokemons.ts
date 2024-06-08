@@ -18,7 +18,7 @@ export function useFetchPokemons(amount: number, start: number = 1) {
     setIsFetching(true)
     getPokemons(amount, pokemons[pokemons.length - 1].id + 1)
       .then((fetchedPokemons) => {
-        setPokemons(prevPokemons => [...prevPokemons, ...fetchedPokemons])
+        setPokemons((prevPokemons) => [...prevPokemons, ...fetchedPokemons])
       })
       .finally(() => setIsFetching(false))
   }

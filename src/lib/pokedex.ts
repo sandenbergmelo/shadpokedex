@@ -22,11 +22,16 @@ const typeBgColors: Record<string, string> = {
   fairy: 'bg-[#D685AD]',
 }
 
-function createPokemonPromises(amount: number, start: number = 1): Promise<Pokemon | null>[] {
+function createPokemonPromises(
+  amount: number,
+  start: number = 1,
+): Promise<Pokemon | null>[] {
   return Array.from({ length: amount }, async (_, i) => {
     const id = i + start
     try {
-      const response = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      const response = await axios.get<Pokemon>(
+        `https://pokeapi.co/api/v2/pokemon/${id}`,
+      )
       return response.data
     } catch (error) {
       console.error(`Failed to fetch Pokemon with ID: ${id}`, error)
@@ -35,24 +40,34 @@ function createPokemonPromises(amount: number, start: number = 1): Promise<Pokem
   })
 }
 
-export async function getPokemons(amount: number, start: number = 1): Promise<Pokemon[]> {
+export async function getPokemons(
+  amount: number,
+  start: number = 1,
+): Promise<Pokemon[]> {
   try {
     const pokemonPromises = createPokemonPromises(amount, start)
     const pokemons = await Promise.all(pokemonPromises)
-    return pokemons.filter(pokemon => pokemon !== null) as Pokemon[]
+    return pokemons.filter((pokemon) => pokemon !== null) as Pokemon[]
   } catch (error) {
     console.error('Failed to fetch Pokemons', error)
     return []
   }
 }
 
-export function getPokeAnimatedSprite(poke: Pokemon, isShiny: boolean = false): string {
+export function getPokeAnimatedSprite(
+  poke: Pokemon,
+  isShiny: boolean = false,
+): string {
   if (isShiny) {
-    const shinyAnimated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_shiny
+    const shinyAnimated =
+      poke.sprites.versions?.['generation-v']?.['black-white']?.animated
+        ?.front_shiny
     return shinyAnimated || poke.sprites.front_shiny
   }
 
-  const animated = poke.sprites.versions?.['generation-v']?.['black-white']?.animated?.front_default
+  const animated =
+    poke.sprites.versions?.['generation-v']?.['black-white']?.animated
+      ?.front_default
   return animated || poke.sprites.front_default
 }
 

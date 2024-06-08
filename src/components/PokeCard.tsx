@@ -1,7 +1,7 @@
 import {
   getPokeAnimatedSprite,
   getPokemonSound,
-  getTypeBgColor
+  getTypeBgColor,
 } from '@/lib/pokedex'
 import type { Pokemon } from '@/types/pokemon'
 import { Badge } from '@components/ui/badge'
@@ -12,7 +12,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from '@components/ui/card'
 import { Sparkle } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
@@ -23,14 +23,14 @@ function playSound(url: string) {
   audio.play()
 }
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   const [isShine, setIsShine] = useState(false)
   const shineIcon = useRef<HTMLSpanElement>(null)
 
   const toggleShine = useCallback(async () => {
-    setIsShine(prev => !prev)
+    setIsShine((prev) => !prev)
 
     await sleep(100)
     shineIcon.current!.classList.toggle('text-yellow-400')
@@ -39,25 +39,26 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
     shineIcon.current!.classList.add('animate-bounce')
     await sleep(600)
     shineIcon.current!.classList.remove('animate-bounce')
-
   }, [])
 
   return (
-    <Card className='cursor-pointer p-6 transition-all duration-500 hover:scale-110'>
-      <CardHeader className='items-center pt-0'>
-        <CardTitle className='text-center first-letter:capitalize'>
+    <Card className="cursor-pointer p-6 transition-all duration-500 hover:scale-110">
+      <CardHeader className="items-center pt-0">
+        <CardTitle className="text-center first-letter:capitalize">
           {pokemon.name}
         </CardTitle>
-        <CardDescription className='text-center'>
+        <CardDescription className="text-center">
           {`#${pokemon.id.toString().padStart(3, '0')}`}
         </CardDescription>
       </CardHeader>
 
-      <div className='-mt-5 flex justify-center'>
-        <Button variant='ghost' className='w-10 text-primary-foreground'
+      <div className="-mt-5 flex justify-center">
+        <Button
+          variant="ghost"
+          className="w-10 text-primary-foreground"
           onClick={toggleShine}
         >
-          <span ref={shineIcon}>
+          <span ref={shineIcon} className="">
             <Sparkle size={20} />
           </span>
         </Button>
@@ -65,17 +66,17 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
 
       <CardContent>
         <img
-          className='size-32 cursor-pointer transition-all duration-500 hover:scale-125'
+          className="size-32 cursor-pointer transition-all duration-500 hover:scale-125"
           src={getPokeAnimatedSprite(pokemon, isShine)}
           alt={`Pokemon: ${pokemon.name}`}
           onClick={() => playSound(getPokemonSound(pokemon))}
         />
       </CardContent>
 
-      <CardFooter className='flex w-48 justify-center gap-2'>
+      <CardFooter className="flex w-48 justify-center gap-2">
         {pokemon.types.map((type) => (
           <Badge
-            variant='secondary'
+            variant="secondary"
             key={type.type.name}
             className={`text-sm uppercase ${getTypeBgColor(type.type.name)}`}
           >

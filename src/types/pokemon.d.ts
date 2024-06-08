@@ -15,7 +15,7 @@ declare interface Pokemon extends PokeAPI.Pokemon {
         }
       }
     }
-  },
+  }
   cries: {
     latest?: string
     legacy: string

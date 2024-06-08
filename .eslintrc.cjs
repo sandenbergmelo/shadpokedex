@@ -5,10 +5,10 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:tailwindcss/recommended'
-
+    'plugin:tailwindcss/recommended',
+    '@rocketseat/eslint-config/react'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'src/components/ui', 'src/lib/utils.ts'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'import-newlines'],
   rules: {
@@ -16,8 +16,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'semi': ['error', 'never'],
-    'quotes': ['error', 'single'],
     'import-newlines/enforce': ['warn', { items: 40, 'max-len': 80 }],
     'tailwindcss/classnames-order': 'warn',
   },
