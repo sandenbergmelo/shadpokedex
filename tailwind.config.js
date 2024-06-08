@@ -74,11 +74,9 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        'PokemonSolid': ['Pokemon Solid','Arial'],
-      }
+        PokemonSolid: ['Pokemon Solid', 'Arial'],
+      },
     },
   },
-  plugins: [
-    tailwindcssAnimate,
-  ],
+  plugins: [tailwindcssAnimate],
 }
