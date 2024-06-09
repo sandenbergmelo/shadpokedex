@@ -1,3 +1,4 @@
+import { sleep } from '@/lib/functions'
 import {
   getPokeAnimatedSprite,
   getPokemonSound,
@@ -22,8 +23,6 @@ function playSound(url: string) {
   audio.volume = 0.5
   audio.play()
 }
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   const [isShine, setIsShine] = useState(false)
