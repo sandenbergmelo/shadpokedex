@@ -20,14 +20,14 @@ export function Header({
       <div className="container">
         <Input
           type="search"
-          className="ml-4 h-16 w-min text-xl"
+          className="ml-5 h-16 w-min text-xl"
           placeholder="Pesquisar Pokémon 🔍"
           value={searchTermState}
           onChange={handleSearch}
           aria-label="Pesquisar Pokémon"
         />
       </div>
-      <div className="container ml-4 mt-4 flex gap-2">
+      <div className="container ml-5 mt-4 flex gap-2">
         <p>Carregar mais automaticamente: </p>
         <Switch defaultChecked onCheckedChange={handleSwitch} />
       </div>

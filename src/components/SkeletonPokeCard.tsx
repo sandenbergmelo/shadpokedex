@@ -11,7 +11,7 @@ import { Skeleton } from '@components/ui/skeleton'
 
 export function SkeletonPokeCard() {
   return (
-    <Card className="cursor-pointer bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110">
+    <Card className="w-60 cursor-pointer bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110">
       <CardHeader className="items-center pt-0">
         <CardTitle className="text-center first-letter:capitalize">
           <Skeleton className="h-5 w-24" />
@@ -22,11 +22,7 @@ export function SkeletonPokeCard() {
       </CardHeader>
 
       <div className="-mt-5 flex justify-center">
-        <Button
-          variant="ghost"
-          className="w-10 text-primary-foreground"
-          disabled
-        >
+        <Button variant="ghost" className="w-10 text-[#131f3b]" disabled>
           <span>
             <Skeleton className="size-5 rounded-full" />
           </span>
@@ -37,7 +33,7 @@ export function SkeletonPokeCard() {
         <Skeleton className="size-32" />
       </CardContent>
 
-      <CardFooter className="flex w-48 justify-center gap-2">
+      <CardFooter className="justify-center gap-2">
         <Skeleton className="h-5 w-12" />
         <Skeleton className="h-5 w-12" />
       </CardFooter>
