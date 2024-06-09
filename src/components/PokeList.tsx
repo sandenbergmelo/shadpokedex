@@ -8,10 +8,21 @@ import { useInView } from 'react-intersection-observer'
 interface PokeListProps {
   autoFetch: boolean
   searchTerm: string
+  initialAmount?: number
+  addAmount?: number
+  addAmountAutoFetch?: number
 }
 
-export function PokeList({ autoFetch, searchTerm }: PokeListProps) {
-  const { pokemons, isFetching, addMorePokemons } = useFetchPokemons(34)
+export function PokeList({
+  autoFetch,
+  searchTerm,
+  initialAmount = 34,
+  addAmount = 15,
+  addAmountAutoFetch = 25,
+}: PokeListProps) {
+  const { pokemons, isFetching, addMorePokemons } =
+    useFetchPokemons(initialAmount)
+
   const { ref, inView } = useInView({ threshold: 0.6 })
 
   useEffect(() => {
@@ -20,11 +31,11 @@ export function PokeList({ autoFetch, searchTerm }: PokeListProps) {
     ref(document.querySelector('footer')!)
 
     if (inView) {
-      addMorePokemons(25)
+      addMorePokemons(addAmountAutoFetch)
     }
 
     return () => ref(null)
-  }, [ref, autoFetch, searchTerm, inView, addMorePokemons])
+  }, [inView, autoFetch, searchTerm, addAmountAutoFetch, addMorePokemons, ref])
 
   const filteredPokemons = pokemons.filter((pokemon) => {
     return pokemon.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
@@ -33,7 +44,7 @@ export function PokeList({ autoFetch, searchTerm }: PokeListProps) {
   return (
     <main className="container flex flex-wrap justify-center gap-4">
       {isFetching && pokemons.length === 0
-        ? Array.from({ length: 34 }).map((_, index) => (
+        ? Array.from({ length: initialAmount }).map((_, index) => (
             <SkeletonPokeCard key={index} />
           ))
         : filteredPokemons.map((pokemon) => (
@@ -41,12 +52,12 @@ export function PokeList({ autoFetch, searchTerm }: PokeListProps) {
           ))}
 
       {isFetching &&
-        Array.from({ length: 15 }).map((_, index) => (
+        Array.from({ length: addAmount }).map((_, index) => (
           <SkeletonPokeCard key={index} />
         ))}
 
       {!autoFetch && !searchTerm && (
-        <Button variant="secondary" onClick={() => addMorePokemons(15)}>
+        <Button variant="secondary" onClick={() => addMorePokemons(addAmount)}>
           Carregar mais
         </Button>
       )}
