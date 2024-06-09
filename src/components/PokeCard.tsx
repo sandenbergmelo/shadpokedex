@@ -1,4 +1,4 @@
-import { sleep } from '@/lib/functions'
+import { playSound, sleep } from '@/lib/functions'
 import {
   getPokeAnimatedSprite,
   getPokeTypeBgClassName,
@@ -17,12 +17,6 @@ import {
 } from '@components/ui/card'
 import { Sparkle } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
-
-function playSound(url: string) {
-  const audio = new Audio(url)
-  audio.volume = 0.5
-  audio.play()
-}
 
 export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   const [isShine, setIsShine] = useState(false)
