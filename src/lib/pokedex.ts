@@ -1,7 +1,7 @@
 import type { Pokemon } from '@/types/pokemon'
 import axios from 'axios'
 
-const typeBgColors: Record<string, string> = {
+const pokeTypeBgClassName: Record<string, string> = {
   normal: 'bg-[#A8A77A]',
   fire: 'bg-[#EE8130]',
   water: 'bg-[#6390F0]',
@@ -71,8 +71,8 @@ export function getPokeAnimatedSprite(
   return animated || poke.sprites.front_default
 }
 
-export function getTypeBgColor(typeName: string): string {
-  return typeBgColors[typeName] || 'bg-gray-500'
+export function getPokeTypeBgClassName(typeName: string): string {
+  return pokeTypeBgClassName[typeName] || 'bg-gray-500'
 }
 
 export function getPokemonSound(poke: Pokemon): string {

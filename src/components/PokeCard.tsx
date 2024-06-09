@@ -1,8 +1,8 @@
 import { sleep } from '@/lib/functions'
 import {
   getPokeAnimatedSprite,
+  getPokeTypeBgClassName,
   getPokemonSound,
-  getTypeBgColor,
 } from '@/lib/pokedex'
 import type { Pokemon } from '@/types/pokemon'
 import { Badge } from '@components/ui/badge'
@@ -73,15 +73,19 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
       </CardContent>
 
       <CardFooter className="justify-center gap-2">
-        {pokemon.types.map((type) => (
-          <Badge
-            variant="secondary"
-            key={type.type.name}
-            className={`text-sm uppercase ${getTypeBgColor(type.type.name)}`}
-          >
-            {type.type.name}
-          </Badge>
-        ))}
+        {pokemon.types.map((type) => {
+          const bgClassName = getPokeTypeBgClassName(type.type.name)
+
+          return (
+            <Badge
+              variant="secondary"
+              key={type.type.name}
+              className={`text-sm uppercase ${bgClassName}`}
+            >
+              {type.type.name}
+            </Badge>
+          )
+        })}
       </CardFooter>
     </Card>
   )
