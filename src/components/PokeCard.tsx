@@ -59,7 +59,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
 
       <CardContent>
         <img
-          className="size-32 cursor-pointer transition-all duration-500 hover:scale-125"
+          className="h-32 cursor-pointer transition-all duration-500 hover:scale-125"
           src={getPokeAnimatedSprite(pokemon, isShine)}
           alt={`Pokemon: ${pokemon.name}`}
           onClick={() => playSound(getPokemonSound(pokemon))}
