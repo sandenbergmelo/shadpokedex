@@ -1,6 +1,6 @@
 import type { PokeAPI } from 'pokeapi-types'
 
-declare interface Pokemon extends PokeAPI.Pokemon {
+export interface Pokemon extends PokeAPI.Pokemon {
   sprites: PokeAPI.PokemonSprites & {
     versions?: {
       'generation-v'?: {
