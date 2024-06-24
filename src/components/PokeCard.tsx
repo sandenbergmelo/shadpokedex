@@ -4,6 +4,7 @@ import {
   getPokeTypeBgClassName,
   getPokemonSound,
 } from '@/lib/pokedex'
+import { cn } from '@/lib/utils'
 import type { Pokemon } from '@/types/pokemon'
 import { Badge } from '@components/ui/badge'
 import { Button } from '@components/ui/button'
@@ -74,7 +75,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
             <Badge
               variant="secondary"
               key={type.type.name}
-              className={`text-sm uppercase ${bgClassName}`}
+              className={cn('text-sm uppercase', bgClassName)}
             >
               {type.type.name}
             </Badge>
