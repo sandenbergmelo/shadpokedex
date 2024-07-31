@@ -1,5 +1,4 @@
 import type { Pokemon } from '@/types/pokemon'
-import console from 'console'
 import { api } from './api-client'
 
 const pokeTypeBgClassName: Record<string, string> = {
