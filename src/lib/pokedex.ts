@@ -1,5 +1,6 @@
 import type { Pokemon } from '@/types/pokemon'
-import axios from 'axios'
+import console from 'console'
+import { api } from './api-client'
 
 const pokeTypeBgClassName: Record<string, string> = {
   normal: 'bg-pokeType-normal',
@@ -29,9 +30,7 @@ function createPokemonPromises(
   return Array.from({ length: amount }, async (_, i) => {
     const id = i + start
     try {
-      const response = await axios.get<Pokemon>(
-        `https://pokeapi.co/api/v2/pokemon/${id}`,
-      )
+      const response = await api.get<Pokemon>(`/${id}`)
       return response.data
     } catch (error) {
       console.error(`Failed to fetch Pokemon with ID: ${id}`, error)
