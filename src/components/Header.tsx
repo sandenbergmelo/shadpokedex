@@ -15,7 +15,7 @@ export function Header({
   return (
     <header className="container mx-auto p-4">
       <div className="mb-4">
-        <h1 className="text-center font-PokemonSolid text-6xl">Pokédex</h1>
+        <h1 className="text-center font-Pokemon-solid text-6xl">Pokédex</h1>
       </div>
       <div className="container">
         <Input
