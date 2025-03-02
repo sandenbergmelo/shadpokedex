@@ -5,7 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:tailwindcss/recommended',
+    // 'plugin:tailwindcss/recommended',
     '@rocketseat/eslint-config/react'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'src/components/ui', 'src/lib/utils.ts'],
@@ -17,6 +17,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'import-newlines/enforce': ['warn', { items: 40, 'max-len': 80 }],
-    'tailwindcss/classnames-order': 'warn',
+    // 'tailwindcss/classnames-order': 'warn',
   },
 }
