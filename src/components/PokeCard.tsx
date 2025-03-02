@@ -36,7 +36,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   }, [])
 
   return (
-    <Card className="w-60 cursor-pointer bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110">
+    <Card className="w-60 bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110">
       <CardHeader className="items-center pt-0">
         <CardTitle className="text-center first-letter:capitalize">
           {pokemon.name}
@@ -49,7 +49,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
       <div className="-mt-5 flex justify-center">
         <Button
           variant="ghost"
-          className="w-10 text-[#131f3b]"
+          className="w-10 text-[#131f3b] cursor-pointer"
           onClick={toggleShine}
         >
           <span ref={shineIcon}>
@@ -75,7 +75,7 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
             <Badge
               variant="secondary"
               key={type.type.name}
-              className={cn('text-sm uppercase', bgClassName)}
+              className={cn('text-sm uppercase cursor-default', bgClassName)}
             >
               {type.type.name}
             </Badge>

@@ -57,7 +57,11 @@ export function PokeList({
         ))}
 
       {!autoFetch && !searchTerm && (
-        <Button variant="secondary" onClick={() => addMorePokemons(addAmount)}>
+        <Button
+          variant="secondary"
+          onClick={() => addMorePokemons(addAmount)}
+          className="cursor-pointer"
+        >
           Carregar mais
         </Button>
       )}
