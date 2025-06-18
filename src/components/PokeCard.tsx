@@ -75,7 +75,10 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
             <Badge
               variant="secondary"
               key={type.type.name}
-              className={cn('text-sm uppercase cursor-default', bgClassName)}
+              className={cn(
+                'text-sm uppercase cursor-default rounded-full hover:bg-secondary/80 transition-all duration-150',
+                bgClassName,
+              )}
             >
               {type.type.name}
             </Badge>
