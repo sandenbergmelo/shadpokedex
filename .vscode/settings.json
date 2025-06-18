@@ -3,7 +3,9 @@
         "*.css": "tailwindcss",
     },
     "cSpell.words": [
+        "bunx",
         "clsx",
+        "cmdk",
         "imgs",
         "pokeapi",
         "pokedex",
@@ -13,6 +15,7 @@
         "Pokemons",
         "Pokémons",
         "rocketseat",
+        "shadcn",
         "shadpokedex"
     ]
 }

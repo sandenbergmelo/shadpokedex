@@ -11,7 +11,9 @@ import { Skeleton } from '@components/ui/skeleton'
 
 export function SkeletonPokeCard() {
   return (
-    <Card className="w-60 cursor-pointer bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110">
+    <Card className="w-60 cursor-pointer
+     bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110"
+    >
       <CardHeader className="items-center pt-0">
         <CardTitle className="text-center first-letter:capitalize">
           <Skeleton className="h-5 w-24" />
