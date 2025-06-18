@@ -36,7 +36,10 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
   }, [])
 
   return (
-    <Card className="w-60 bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110">
+    <Card
+      className="w-60
+      bg-slate-700/20 p-6 transition-all duration-500 hover:scale-110"
+    >
       <CardHeader className="items-center pt-0">
         <CardTitle className="text-center first-letter:capitalize">
           {pokemon.name}
@@ -60,7 +63,8 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
 
       <CardContent>
         <img
-          className="h-32 cursor-pointer transition-all duration-500 hover:scale-125"
+          className="h-32 cursor-pointer
+          transition-all duration-500 hover:scale-125"
           src={getPokeAnimatedSprite(pokemon, isShine)}
           alt={`Pokemon: ${pokemon.name}`}
           onClick={() => playSound(getPokemonSound(pokemon))}
@@ -76,7 +80,8 @@ export function PokeCard({ pokemon }: { pokemon: Pokemon }) {
               variant="secondary"
               key={type.type.name}
               className={cn(
-                'text-sm uppercase cursor-default rounded-full hover:bg-secondary/80 transition-all duration-150',
+                `text-sm uppercase cursor-default rounded-full
+                hover:bg-secondary/80 transition-all duration-150`,
                 bgClassName,
               )}
             >

@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "shad": "bunx --bun shadcn@latest",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
     "preview": "vite preview",
     "clean": "rm -rf dist"
   },
@@ -28,7 +28,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@rocketseat/eslint-config": "^2.2.2",
+    "@rocketseat/eslint-config": "^3.0.12",
     "@tailwindcss/vite": "^4.1.10",
     "@types/bun": "^1.2.16",
     "@types/node": "^24.0.3",
@@ -37,7 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^8.34.1",
     "@typescript-eslint/parser": "^8.34.1",
     "@vitejs/plugin-react-swc": "^3.10.2",
-    "eslint": "8.57.0",
+    "eslint": "^9.29.0",
     "eslint-plugin-import-newlines": "^1.4.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
@@ -45,6 +45,7 @@
     "pokeapi-types": "^0.0.2",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.1",
     "vite": "^6.3.5"
   }
 }

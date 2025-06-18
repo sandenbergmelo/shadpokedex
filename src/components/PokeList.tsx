@@ -45,10 +45,10 @@ export function PokeList({
     <main className="container flex flex-wrap justify-center gap-4">
       {isFetching && pokemons.length === 0
         ? Array.from({ length: initialAmount }).map((_, index) => (
-            <SkeletonPokeCard key={index} />
+          <SkeletonPokeCard key={index} />
           ))
         : filteredPokemons.map((pokemon) => (
-            <PokeCard key={pokemon.id} pokemon={pokemon} />
+          <PokeCard key={pokemon.id} pokemon={pokemon} />
           ))}
 
       {isFetching &&
